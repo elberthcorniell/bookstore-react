@@ -3,10 +3,4 @@ export const createBook = (book, state) => [
   book,
 ];
 
-export const removeBook = (book, state) => {
-  const newState = [];
-  state.forEach(({ bookId }) => {
-    if (bookId !== book.bookId) { newState.push(book); }
-  });
-  return newState;
-};
+export const removeBook = (book, state) => state.filter(({ bookId }) => bookId !== book.bookId);
