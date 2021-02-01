@@ -1,9 +1,18 @@
-import { useStore } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Book from './Book';
 
 const BooksList = () => {
-  const store = useStore();
-  const { books = [] } = store.getState();
+  const books = useSelector(state => state.books);
+  const dispatch = useDispatch();
+
+  const handleRemoveBook = book => {
+    console.log(book);
+    dispatch({
+      type: 'REMOVE_BOOK',
+      book,
+    });
+  };
+
   return (
     <table>
       <thead>
@@ -11,10 +20,17 @@ const BooksList = () => {
           <th>Book ID</th>
           <th>Title</th>
           <th>Category</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
-        {books?.map(book => <Book key={book?.bookId} book={book} />)}
+        {books?.map(book => (
+          <Book
+            key={book?.bookId}
+            book={book}
+            handleRemoveBook={handleRemoveBook}
+          />
+        ))}
       </tbody>
     </table>
   );
