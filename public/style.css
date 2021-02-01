@@ -116,7 +116,7 @@ ul > li.active {
   color: white;
   border: none;
   padding: 10px 20px;
-  border: 5px;
+  border-radius: 5px;
   margin-top: 20px;
   cursor: pointer;
 }
@@ -126,7 +126,7 @@ ul > li.active {
   color: white;
   border: none;
   padding: 10px 10px;
-  border: 5px;
+  border-radius: 5px;
   margin-top: 20px;
   margin-left: 50px;
   cursor: pointer;
@@ -156,9 +156,7 @@ ul > li.active {
   padding: 0 10px;
 }
 
-.form-container input::placeholder {
-  color: #c4c4c4; 
-}
+.form-container input::placeholder { color: #c4c4c4; }
 
 .form-container select {
   border: 1px solid #e8e8e8;
