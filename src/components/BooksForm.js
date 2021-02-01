@@ -5,12 +5,14 @@ import { connect } from 'react-redux';
 class BooksForm extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      category: 'Action',
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  getCaregories = () => ['Action', 'Biography', 'History', 'Horror', 'Kids', 'Learning', 'Sci-Fi'];
+  getCategories = () => ['Action', 'Biography', 'History', 'Horror', 'Kids', 'Learning', 'Sci-Fi'];
 
   handleChange(e) {
     const { id, value } = e.target;
@@ -45,7 +47,7 @@ class BooksForm extends Component {
           onChange={this.handleChange}
         />
         <select value={category} id="category" onChange={this.handleChange}>
-          {this.getCaregories()?.map(category => (
+          {this.getCategories()?.map(category => (
             <option
               key={category}
               value={category}
