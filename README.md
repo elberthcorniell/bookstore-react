@@ -10,6 +10,8 @@
 
 ## Live Demo
 
+![Bookstore Screenshot](./.github/capture.png)
+
 [Live Demo Link](https://elberthcorniell-bookstore.herokuapp.com/)
 
 ## Getting Started

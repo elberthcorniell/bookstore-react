@@ -6,6 +6,7 @@ const CategoryFilter = ({ handleFilterChange }) => {
   const category = useSelector(state => state.filter);
   return (
     <select
+      className="filter"
       value={category}
       id="category"
       onChange={handleFilterChange}
