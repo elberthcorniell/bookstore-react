@@ -4,3 +4,5 @@ export const createBook = (book, state) => [
 ];
 
 export const removeBook = (book, state) => state.filter(({ bookId }) => bookId !== book.bookId);
+
+export const changeFilter = filter => filter;
