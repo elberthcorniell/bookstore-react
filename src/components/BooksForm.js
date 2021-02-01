@@ -1,44 +1,71 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 class BooksForm extends Component {
   constructor() {
     super();
     this.state = {};
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-    getCaregories = () => ['Action', 'Biography', 'History', 'Horror', 'Kids', 'Learning', 'Sci-Fi'];
+  getCaregories = () => ['Action', 'Biography', 'History', 'Horror', 'Kids', 'Learning', 'Sci-Fi'];
 
-    render() {
-      const { bookId, title, category } = this.state;
-      return (
-        <form>
-          <input
-            value={bookId}
-            id="bookId"
-            placeholder="Book ID"
-            type="text"
-            onChange={this.handleChange}
-          />
-          <input
-            value={title}
-            id="title"
-            placeholder="Title"
-            type="text"
-            onChange={this.handleChange}
-          />
-          <select value={category} id="category" onChange={this.handleChange}>
-            {this.getCaregories()?.map(category => (
-              <option
-                key={category}
-                value={category}
-              >
-                {category}
-              </option>
-            ))}
-          </select>
-        </form>
-      );
-    }
+  handleChange(e) {
+    const { id, value } = e.target;
+    this.setState({
+      [id]: value,
+    });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const { dispatch } = this.props;
+    const { title, category } = this.state;
+    dispatch({
+      type: 'CREATE_BOOK',
+      book: {
+        bookId: Math.random(),
+        title,
+        category,
+      },
+    });
+  }
+
+  render() {
+    const { title, category } = this.state;
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input
+          value={title}
+          id="title"
+          placeholder="Title"
+          type="text"
+          onChange={this.handleChange}
+        />
+        <select value={category} id="category" onChange={this.handleChange}>
+          {this.getCaregories()?.map(category => (
+            <option
+              key={category}
+              value={category}
+            >
+              {category}
+            </option>
+          ))}
+        </select>
+        <button type="submit">Add book</button>
+      </form>
+    );
+  }
 }
 
-export default BooksForm;
+BooksForm.propTypes = {
+  dispatch: PropTypes.func,
+};
+
+BooksForm.defaultProps = {
+  dispatch: () => { },
+};
+
+export default connect()(BooksForm);
